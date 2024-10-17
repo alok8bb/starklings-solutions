@@ -2,19 +2,21 @@
 // Address all the TODOs to make the tests pass!
 // Execute `starklings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
-#[derive(Drop, Copy)]
+#[derive(Drop, Copy, Debug)]
 enum Message { // TODO: implement the message variant types based on their usage below
+    ChangeColor: (u8, u8, u8),
+    Echo: felt252,
+    Move: Point,
+    Quit
 }
 
-#[derive(Drop, Copy)]
+#[derive(Drop, Copy, Debug)]
 struct Point {
     x: u8,
     y: u8,
 }
 
-#[derive(Drop, Copy)]
+#[derive(Drop, Copy, Debug)]
 struct State {
     color: (u8, u8, u8),
     position: Point,
@@ -50,6 +52,12 @@ impl StateImpl of StateTrait {
     fn process(
         ref self: State, message: Message
     ) { // TODO: create a match expression to process the different message variants
+        match message {
+            Message::ChangeColor((x, y, z)) => { self.color = (x, y, z); },
+            Message::Move(p) => { self.position = p; },
+            Message::Quit => { self.quit = true; },
+            Message::Echo(s) => { println!("{}", s); }
+        }
     }
 }
 

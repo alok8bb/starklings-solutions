@@ -4,12 +4,11 @@
 
 use debug::PrintTrait;
 
-// I AM NOT DONE
 
 fn main() {
     let arr0 = ArrayTrait::new();
 
-    let mut _arr1 = fill_arr(arr0);
+    let mut _arr1 = fill_arr(arr0.clone());
 
     // Do not change the following line!
     arr0.print();

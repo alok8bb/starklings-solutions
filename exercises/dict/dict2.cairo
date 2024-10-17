@@ -1,16 +1,19 @@
 // dict2.cairo
-// Dictionaries can be used to simulate dynamic array : the value they store can be accessed and modified.
-// Your task is to create a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
-// Make me compile and pass the test!
+// Dictionaries can be used to simulate dynamic array : the value they store can be accessed and
+// modified.
+// Your task is to create a function that multiplies the elements stored at the indexes 0 to n of a
+// dictionary by 10 Make me compile and pass the test!
 // Execute `starklings hint dict2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
+use core::dict::{Felt252Dict, Felt252DictEntryTrait};
 
 fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
-    //TODO : make a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
-
-
+    //TODO : make a function that multiplies the elements stored at the indexes 0 to n of a
+    //dictionary by 10
+    for i in 0..n {
+        let (entry, value) = dict.entry(i.into());
+        dict = entry.finalize(value * 10);
+    }
 }
 
 // Don't change anything in the test
@@ -42,5 +45,4 @@ fn test_4() {
 
     assert(dict.get(2) == 50, 'First element is not 50');
     assert(dict.get(3) == 100, 'First element is not 100');
-
 }
